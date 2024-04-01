@@ -8,9 +8,9 @@ The workspace contains two folders by default, where:
 
 - `src`: the folder to maintain sources
 
--- First_follow.java: The main class containing the entry point for the program.
--- First.java: This class defines functions for calculating the first sets of non-terminals and terminals in the grammar.
--- Follow.java: This class implements functions for computing the follow sets of non-terminals in the grammar.
+- `First_follow.java`: The main class containing the entry point for the program.
+- `First.java`: This class defines functions for calculating the first sets of non-terminals and terminals in the grammar.
+- `Follow.java`: This class implements functions for computing the follow sets of non-terminals in the grammar.
 
 - `lib`: the folder to maintain dependencies
 
