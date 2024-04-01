@@ -1,0 +1,95 @@
+//    public void computeFirstSet() {
+//        for (String nonTerminal : grammar.keySet()) {
+//            firstSet.put(nonTerminal, new HashSet<>());
+//        }
+//        for (Map.Entry<String, List<String>> entry : grammar.entrySet()) {
+//            String nonTerminal = entry.getKey();
+//            List<String> productions = entry.getValue();
+//
+//            for (String production : productions) {
+//                computeFirst(nonTerminal, production);
+//            }
+//        }
+//    }
+
+//    private void computeFirst(String nonTerminal, String production) {
+//        String firstSymbol = String.valueOf(production.charAt(0));
+//        if (!(Character.isUpperCase(firstSymbol.charAt(0)))) {
+//            firstSet.get(nonTerminal).add(firstSymbol);
+//        } else {
+//            if (production.equals("#")) {
+//                firstSet.get(nonTerminal).add("#");
+//                return;
+//            }
+//            List<String> productionsOfNt = grammar.get(firstSymbol);
+//            for (String symbProd : productionsOfNt) {
+//                computeFirst(nonTerminal, symbProd);
+//
+//                firstSet.get(nonTerminal).addAll(firstSet.get(firstSymbol));
+//            }
+//        }
+//    }
+
+//    public void computeFollowSet() {
+//        boolean changed;
+//        Set<String> visited = new HashSet<>();
+//        for (String nonTerminal : grammar.keySet()) {
+//            followSet.put(nonTerminal, new HashSet<>());
+//            followSet.get(nonTerminal).add("$");
+//        }
+//        do {
+//            changed = false;
+//            for (String nonTerminal : grammar.keySet()) {
+//                for (String production : grammar.get(nonTerminal)) {
+//                    for (int i = 0; i < production.length(); i++) {
+//                        char symbol = production.charAt(i);
+//                        if (Character.isUpperCase(symbol)) {
+//                            Set<String> firstOfRest = computeRest(production, i + 1);
+//                            followSet.get(String.valueOf(symbol)).addAll(firstOfRest);
+//
+//                            if (firstOfRest.contains("#")
+//                                    && !String.valueOf(symbol).equals(grammar.keySet().iterator().next())) {
+//                                if (!visited.contains(nonTerminal)) {
+//                                    visited.add(nonTerminal);
+//                                    Set<String> followOfCurrent = followSet.get(nonTerminal);
+//                                    followSet.get(String.valueOf(symbol)).addAll(followOfCurrent);
+//                                    followSet.get(String.valueOf(symbol)).remove("#");
+//                                    changed = true;
+//                                }
+//                            }
+//                        }
+//                    }
+//                }
+//            }
+//        } while (changed);
+//    }
+
+//    private Set<String> computeRest(String production, int start) {
+//        Set<String> firstOfRest = new HashSet<>();
+//
+//        for (int i = start; i < production.length(); i++) {
+//            char symbol = production.charAt(i);
+//            if (Character.isUpperCase(symbol)) {
+//                firstOfRest.addAll(firstSet.get(String.valueOf(symbol)));
+//                if (!firstOfRest.contains("#")) {
+//                    break;
+//                }
+//            } else {
+//                firstOfRest.add(String.valueOf(symbol));
+//                break;
+//            }
+//        }
+//
+//        return firstOfRest;
+//    }
+
+
+//    public void printFirstSet() {
+//        for (Map.Entry<String, Set<String>> entry : firstSet.entrySet()) {
+//            System.out.print("First(" + entry.getKey() + ") -> { ");
+//            for (String terminal : entry.getValue()) {
+//                System.out.print(terminal + "  ");
+//            }
+//            System.out.println("}");
+//        }
+//    }
